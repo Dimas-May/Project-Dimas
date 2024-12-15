@@ -1,9 +1,18 @@
-import React from 'react'
+"use client";
+import React from "react";
+import { useAppSelector } from "../redux/hooks";
+import { store } from "../redux/store";
+import { useSession } from "next-auth/react";
+import Login from "../components/admin-apnel/Login";
 
 const layout = () => {
-  return (
-    <div>layout</div>
-  )
-}
+  const isLoading = useAppSelector((store) => store.LoadingReduce);
+  const { data: session } = useSession();
+  if (!session?.user) {
+    return <Login />;
+  }
 
-export default layout
+  return <div>layout</div>;
+};
+
+export default layout;
