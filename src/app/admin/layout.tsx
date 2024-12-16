@@ -1,15 +1,15 @@
 "use client";
-import React, { Children } from "react";
-import { useAppSelector } from "../redux/hooks";
-import { store } from "../redux/store";
 import { useSession } from "next-auth/react";
-import Login from "../components/admin-apnel/Login";
-import Loader from "../components/admin-apnel/Loader";
-import Sidebar from "../components/admin-apnel/Sidebar";
+import React from "react";
+import Loader from "../components/admin-panel/Loader";
+import Login from "../components/admin-panel/Login";
+import Sidebar from "../components/admin-panel/Sidebar";
+import { useAppSelector } from "../redux/hooks";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
-  const isLoading = useAppSelector((store) => store.LoadingReduce);
+  const isLoading = useAppSelector((store) => store.LoadingReducer);
   const { data: session } = useSession();
+
   if (!session?.user) {
     return <Login />;
   }
@@ -18,8 +18,8 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex">
       <Sidebar />
       <div className="w-full h-full">
-        {/* <Navbar /> */}
-        <div className="bg-gray-900 p-4 h-[calc(100vh-64px)]">{children}</div>
+        {/* /<Navbar /> */}
+        <div className="bg-gray-200 p-4 h-[calc(100vh-64px)]">{children}</div>
       </div>
       {isLoading && <Loader />}
     </div>

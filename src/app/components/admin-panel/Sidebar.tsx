@@ -6,7 +6,6 @@ import { IoAnalytics, IoSettings } from "react-icons/io5";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React from "react";
 
 const menus = [
   {
